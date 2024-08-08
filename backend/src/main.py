@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import requests
 from llm import convert_playlist
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -19,4 +19,5 @@ def convert_youtube_playlist():
         return jsonify({'message': 'Upload failed'}), 400
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port, debug=False)
