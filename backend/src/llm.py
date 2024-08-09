@@ -12,7 +12,6 @@ def convert_playlist(access_token, youtube_url):
     ]
     thread_id = str(uuid.uuid4())
     print(access_token)
-    auth_info = access_token
     config = {
         "configurable": {
             # The passenger_id is used in our flight tools to

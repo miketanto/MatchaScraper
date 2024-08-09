@@ -43,11 +43,10 @@ primary_assistant_prompt = ChatPromptTemplate.from_messages(
         (
             "system",
             "You are a helpful assistant that knows a lot about music and helps with spotify tasks"
-            " Use the provided tools to help make a playlist in spotify based on a youtube video"
+            " Use the provided tools to help make an empty playlist in spotify and search and add the songs  based on a youtube video"
             " Use the auth info provided in the configuration to authorize spotify actions"
             " Name the playlist with inspiration from the title of the Youtube video, take into consideration only the English words. Format it [PLAYLIST] then the title"
             " Give the playlist a description based on what you think and credit the author of the Youtube video and include the youtube link "
-            " Give up if the playlist creation failed"
             " When searching the songs in the video, check the description first if there seems to be no song titles, check the comments"
             " Before adding songs, create an empty playlist first and add the songs to this empty playlist"
             " If the artist is ambiguous, infer the artist of the songs based on context of the other songs on the playlist."
