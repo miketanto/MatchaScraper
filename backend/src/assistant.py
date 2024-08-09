@@ -12,8 +12,8 @@ class Assistant:
     def __call__(self, state: State, config: RunnableConfig):
         while True:
             configuration = config.get("configurable", {})
-            spotify_client = configuration.get("spotify_client", None)
-            state = {**state, "spotify_client": spotify_client}
+            spotify_auth_info = configuration.get("spotify_auth_info", None)
+            state = {**state, "spotify_auth_info": spotify_auth_info}
             result = self.runnable.invoke(state)
             # If the LLM happens to return an empty response, we will re-prompt it
             # for an actual response.
@@ -44,6 +44,7 @@ primary_assistant_prompt = ChatPromptTemplate.from_messages(
             "system",
             "You are a helpful assistant that knows a lot about music and helps with spotify tasks"
             " Use the provided tools to help make a playlist in spotify based on a youtube video"
+            " Use the auth info provided in the configuration to authorize spotify actions"
             " Name the playlist with inspiration from the title of the Youtube video, take into consideration only the English words. Format it [PLAYLIST] then the title"
             " Give the playlist a description based on what you think and credit the author of the Youtube video and include the youtube link "
             " Give up if the playlist creation failed"
@@ -53,7 +54,7 @@ primary_assistant_prompt = ChatPromptTemplate.from_messages(
             " If the video is not found or if there are no songs found from the video, give up and don't search for the songs on the spotify API"
             " When searching, be persistent. Expand your query bounds if the first search returns no results. "
             " If a search comes up empty, expand your search before giving up."
-            "\n\nCurrent Spotify Client:\n\n{spotify_client}\n",
+            "\n\nCurrent Spotify Authorization Token:\n\n{spotify_auth_info}\n",
         ),
         ("placeholder", "{messages}"),
     ]

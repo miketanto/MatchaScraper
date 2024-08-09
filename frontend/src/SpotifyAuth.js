@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Card, CardContent, Typography, Avatar, Box, IconButton, Menu, MenuItem } from '@mui/material';
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-const redirectUrl = process.env.REACT_APP_REDIRECT_URL
+const redirectUrl = process.env.REACT_APP_SPOTIFY_REDIRECT_URL
 const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
 
 const SpotifyAuth = ({ currentToken, setCurrentToken }) => {

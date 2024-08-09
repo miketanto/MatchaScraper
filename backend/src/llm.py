@@ -11,12 +11,13 @@ def convert_playlist(access_token, youtube_url):
         "Hi there can you make me a playlist with songs from the youtube video with id {youtube_url}. If the youtube url is invalid return that you can't do it. If the process is successful return the playlist URL".format(youtube_url = youtube_url)
     ]
     thread_id = str(uuid.uuid4())
-    auth_info = {'access_token': access_token}
+    print(access_token)
+    auth_info = access_token
     config = {
         "configurable": {
             # The passenger_id is used in our flight tools to
             # fetch the user's flight information
-            "spotify_client": auth_info,
+            "spotify_auth_info": access_token,
             "thread_id": thread_id,
         }
     }
