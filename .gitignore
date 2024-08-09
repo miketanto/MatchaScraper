@@ -6,7 +6,7 @@ frontend/.env
 backend/bin/
 backend/include/
 backend/lib/
-bakcend/share/
+backend/share/
 backend/src/.env
 backend/pyvenv.cfg
 
